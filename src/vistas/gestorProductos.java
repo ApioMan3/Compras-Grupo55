@@ -202,28 +202,22 @@ public class gestorProductos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        
+
         try {
-          int id = Integer.parseInt(tfID.getText());
-          ProductoData acceso = new ProductoData();
-          Producto producto = acceso.buscarProducto(id);
-//          nombre, descripcion, precioActual, stock, rbEstado
-           if (producto != null){
+            int id = Integer.parseInt(tfID.getText());
+            ProductoData acceso = new ProductoData();
+            Producto producto = acceso.buscarProducto(id);
+            if (producto != null) {
                 tfNombre.setText(producto.getNombreProducto());
                 rbEstado.setSelected(producto.isEstado());
-               tfDescripcion.setText(producto.getDescripcion());
-                tfStock.setText(producto.getStock()+ "");
-                tfPrecio.setText(producto.getPrecioActual()+ "");
-//                producto = new Product();
-//                producto.setDescripcion(alumno.get());
-//                producto.setNombre(alumno.getNombre());
-//                producto.setDni(doc);
-//                producto.setIdAlumno(alumno.getIdAlumno());}
-          } 
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Error en el campo ID.");
+                tfDescripcion.setText(producto.getDescripcion());
+                tfStock.setText(producto.getStock() + "");
+                tfPrecio.setText(producto.getPrecioActual() + "");
             }
-        
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error en el campo ID.");
+        }
+
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
@@ -231,40 +225,65 @@ public class gestorProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-                      try {
-                int id = Integer.parseInt(tfID.getText());
-                ProductoData acceso = new ProductoData();
-                acceso.modificarProductoEstado(id);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Error en el campo ID.");
-            }
+        try {
+            int id = Integer.parseInt(tfID.getText());
+            ProductoData acceso = new ProductoData();
+            acceso.modificarProductoEstado(id);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error en el campo ID.");
+        }
         vaciar();
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        if (descripcion.getText().isEmpty() || nombre.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No pueden haber campos vacíos.");
-        } else{
-            try {
-        Producto producto = new Producto();
-        producto.setIdProducto(Integer.parseInt(tfID.getText()));
-        producto.setNombreProducto(tfNombre.getText());
-        producto.setDescripcion(tfDescripcion.getText());
-        producto.setPrecioActual(Double.parseDouble(tfPrecio.getText()));
-        producto.setStock(Integer.parseInt(tfStock.getText()));
-        producto.setEstado(rbEstado.isSelected()); 
-        
-
         ProductoData acceso = new ProductoData();
-        acceso.guardarProducto(producto);
+        Producto producto = null;
+        try {
+            if (!tfID.getText().equalsIgnoreCase("")) {
+                producto = crearProducto();
+                boolean existe = acceso.verificarExistencia(producto);
 
-        vaciar();
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Error númerico "+e.getMessage());
+                if (existe) {
+                    try {
+                        acceso.modificarProducto(producto);
+                        vaciar();
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(this, "Error númerico " + e.getMessage());
+                    }
+                } else {
+
+                    if (descripcion.getText().isEmpty() || nombre.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "No pueden haber campos vacíos.");
+                    } else {
+                        try {
+                            producto = crearProductoSinID();
+                            acceso.guardarProducto(producto);
+                            vaciar();
+                        } catch (NumberFormatException e) {
+                            JOptionPane.showMessageDialog(this, "Error númerico " + e.getMessage());
+                        }
+                    }
+
+                }
+            } else {
+
+                if (descripcion.getText().isEmpty() || nombre.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "No pueden haber campos vacíos.");
+                } else {
+                    try {
+                        producto = crearProductoSinID();
+                        acceso.guardarProducto(producto);
+                        vaciar();
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(this, "Error númerico " + e.getMessage());
+                    }
+                }
+
             }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error númerico " + e.getMessage());
         }
-        
-        
+
     }//GEN-LAST:event_guardarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
@@ -294,11 +313,33 @@ public class gestorProductos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfStock;
     // End of variables declaration//GEN-END:variables
 
-private void vaciar(){
-    tfID.setText("");
-    tfNombre.setText("");
-    tfDescripcion.setText("");
-    tfPrecio.setText("");
-    tfStock.setText("");
-    rbEstado.setSelected(false);
-}}
+    private void vaciar() {
+        tfID.setText("");
+        tfNombre.setText("");
+        tfDescripcion.setText("");
+        tfPrecio.setText("");
+        tfStock.setText("");
+        rbEstado.setSelected(false);
+    }
+
+    private Producto crearProducto() {
+        Producto producto = new Producto();
+        producto.setIdProducto(Integer.parseInt(tfID.getText()));
+        producto.setNombreProducto(tfNombre.getText());
+        producto.setDescripcion(tfDescripcion.getText());
+        producto.setPrecioActual(Double.parseDouble(tfPrecio.getText()));
+        producto.setStock(Integer.parseInt(tfStock.getText()));
+        producto.setEstado(rbEstado.isSelected());
+        return producto;
+    }
+
+    private Producto crearProductoSinID() {
+        Producto producto = new Producto();
+        producto.setNombreProducto(tfNombre.getText());
+        producto.setDescripcion(tfDescripcion.getText());
+        producto.setPrecioActual(Double.parseDouble(tfPrecio.getText()));
+        producto.setStock(Integer.parseInt(tfStock.getText()));
+        producto.setEstado(rbEstado.isSelected());
+        return producto;
+    }
+}

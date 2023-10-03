@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class ProductoData {
-    
+
     private Connection con = null;
 
     public ProductoData() {
         con = Conexion.getConexion();
     }
-    
+
     public void modificarProducto(Producto producto) {
 
         String sql = "UPDATE producto SET nombre = ?, descripcion = ? , stock = ? , precioActual = ? , estado = ? WHERE idProducto = ?";
@@ -30,10 +29,10 @@ public class ProductoData {
             ps.setString(1, producto.getNombreProducto());
             ps.setString(2, producto.getDescripcion());
             ps.setInt(3, producto.getStock());
-             ps.setDouble(4, producto.getPrecioActual());
+            ps.setDouble(4, producto.getPrecioActual());
             ps.setBoolean(5, producto.isEstado());
             ps.setInt(6, producto.getIdProducto());
-           
+
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -41,29 +40,16 @@ public class ProductoData {
             } else {
                 JOptionPane.showMessageDialog(null, "El producto no existe");
             }
-            
-             ps.close();
+
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto " + ex.getMessage());
         }
 
     }
-    
+
     public void guardarProducto(Producto producto) {
-      
-        boolean existe = false;
-        List<Producto> listados =  listarTodosLosProductos();
-        
-        for (Producto aux : listados) {
-            if (aux.getIdProducto() == producto.getIdProducto()) {
-                existe = true;
-            }
-        }
-        
-        if (existe) {
-            modificarProducto(producto);
-        } else{
-        
+
         String sql = "INSERT INTO `producto`(`idProducto`,`nombre`, `descripcion`, `precioActual`, `stock`, `estado`) VALUES ('[value-1]',?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -83,9 +69,9 @@ public class ProductoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de acceso: " + ex.getMessage());
         }
+
     }
-     }
-    
+
     public Producto buscarProducto(int id) {
         Producto producto = null;
         String sql = "SELECT nombre, descripcion, precioActual, stock, estado FROM producto WHERE idProducto = ? AND estado = 1";
@@ -107,7 +93,7 @@ public class ProductoData {
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el producto o fue dado de baja."
-                        + " Revise el apartado de Gestor de Productos.");   
+                        + " Revise el apartado de Gestor de Productos.");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -115,9 +101,8 @@ public class ProductoData {
         }
         return producto;
     }
-    
-    
-        public void modificarProductoEstado(int id) {
+
+    public void modificarProductoEstado(int id) {
 
         String sql = "UPDATE producto SET estado = ? WHERE idProducto = ?";
         PreparedStatement ps = null;
@@ -138,8 +123,8 @@ public class ProductoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto. " + ex.getMessage());
         }
     }
-    
-     public List<Producto> listarTodosLosProductos() {
+
+    public List<Producto> listarTodosLosProductos() {
 
         List<Producto> productos = new ArrayList<>();
         try {
@@ -164,7 +149,17 @@ public class ProductoData {
         }
         return productos;
     }
-    
-    
-    
+
+    public boolean verificarExistencia(Producto producto) {
+        boolean existencia = false;
+        List<Producto> listados = listarTodosLosProductos();
+
+        for (Producto aux : listados) {
+            if (aux.getIdProducto() == producto.getIdProducto()) {
+                existencia = true;
+            }
+        }
+
+        return existencia;
+    }
 }

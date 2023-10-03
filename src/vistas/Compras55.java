@@ -12,7 +12,14 @@ package vistas;
 public class Compras55 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Compras55
+     * -Registrar compra con detalles de compras
+     * -Compras por fecha 
+     * -Compras por proveedor 
+     * -Lista de productos por compra
+     * -Proveedores por producto 
+     * -Productos mas comprados entre fechas
+     * -Productos debajo del stock minimo
+     *
      */
     public Compras55() {
         initComponents();
@@ -100,7 +107,7 @@ public class Compras55 extends javax.swing.JFrame {
     }//GEN-LAST:event_comprasActionPerformed
 
     private void productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosActionPerformed
-        
+
     }//GEN-LAST:event_productosActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
