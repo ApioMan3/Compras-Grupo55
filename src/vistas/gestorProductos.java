@@ -7,6 +7,9 @@ package vistas;
 
 import accesoADatos.ProductoData;
 import entidades.Producto;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,7 +36,7 @@ public class gestorProductos extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         tfID = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        jBBuscar = new javax.swing.JButton();
         tfNombre = new javax.swing.JTextField();
         nombre = new javax.swing.JLabel();
         descripcion = new javax.swing.JLabel();
@@ -41,7 +44,7 @@ public class gestorProductos extends javax.swing.JInternalFrame {
         tfPrecio = new javax.swing.JTextField();
         precio = new javax.swing.JLabel();
         estadoII = new javax.swing.JLabel();
-        estado = new javax.swing.JRadioButton();
+        rbEstado = new javax.swing.JRadioButton();
         nuevo = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
@@ -53,16 +56,10 @@ public class gestorProductos extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Id:");
 
-        jButton3.setText("Buscar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        tfNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNombreActionPerformed(evt);
+                jBBuscarActionPerformed(evt);
             }
         });
 
@@ -130,11 +127,11 @@ public class gestorProductos extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3))
+                                .addComponent(jBBuscar))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(estadoII)
                                 .addGap(54, 54, 54)
-                                .addComponent(estado)
+                                .addComponent(rbEstado)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +165,7 @@ public class gestorProductos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(tfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)
+                    .addComponent(jBBuscar)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,7 +188,7 @@ public class gestorProductos extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(estadoII)
-                    .addComponent(estado))
+                    .addComponent(rbEstado))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(nuevo)
@@ -204,20 +201,44 @@ public class gestorProductos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void tfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfNombreActionPerformed
+        try {
+          int id = Integer.parseInt(tfID.getText());
+          ProductoData acceso = new ProductoData();
+          Producto producto = acceso.buscarProducto(id);
+//          nombre, descripcion, precioActual, stock, rbEstado
+           if (producto != null){
+                tfNombre.setText(producto.getNombreProducto());
+                rbEstado.setSelected(producto.isEstado());
+               tfDescripcion.setText(producto.getDescripcion());
+                tfStock.setText(producto.getStock()+ "");
+                tfPrecio.setText(producto.getPrecioActual()+ "");
+//                producto = new Product();
+//                producto.setDescripcion(alumno.get());
+//                producto.setNombre(alumno.getNombre());
+//                producto.setDni(doc);
+//                producto.setIdAlumno(alumno.getIdAlumno());}
+          } 
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Error en el campo ID.");
+            }
+        
+    }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         vaciar();
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
+                      try {
+                int id = Integer.parseInt(tfID.getText());
+                ProductoData acceso = new ProductoData();
+                acceso.modificarProductoEstado(id);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Error en el campo ID.");
+            }
+        vaciar();
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
@@ -226,11 +247,12 @@ public class gestorProductos extends javax.swing.JInternalFrame {
         } else{
             try {
         Producto producto = new Producto();
+        producto.setIdProducto(Integer.parseInt(tfID.getText()));
         producto.setNombreProducto(tfNombre.getText());
         producto.setDescripcion(tfDescripcion.getText());
         producto.setPrecioActual(Double.parseDouble(tfPrecio.getText()));
         producto.setStock(Integer.parseInt(tfStock.getText()));
-        producto.setEstado(estado.isSelected()); 
+        producto.setEstado(rbEstado.isSelected()); 
         
 
         ProductoData acceso = new ProductoData();
@@ -253,10 +275,9 @@ public class gestorProductos extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel descripcion;
     private javax.swing.JButton eliminar;
-    private javax.swing.JRadioButton estado;
     private javax.swing.JLabel estadoII;
     private javax.swing.JButton guardar;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jBBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
@@ -264,6 +285,7 @@ public class gestorProductos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel nombre;
     private javax.swing.JButton nuevo;
     private javax.swing.JLabel precio;
+    private javax.swing.JRadioButton rbEstado;
     private javax.swing.JButton salir;
     private javax.swing.JTextField tfDescripcion;
     private javax.swing.JTextField tfID;
@@ -278,5 +300,5 @@ private void vaciar(){
     tfDescripcion.setText("");
     tfPrecio.setText("");
     tfStock.setText("");
-    estado.setSelected(false);
+    rbEstado.setSelected(false);
 }}
