@@ -38,8 +38,9 @@ public class Compras55 extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         compras = new javax.swing.JMenu();
         productos = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmProductos = new javax.swing.JMenuItem();
         proveedores = new javax.swing.JMenu();
+        jmProveedores = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 650));
@@ -70,17 +71,21 @@ public class Compras55 extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Gestor de Productos");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmProductos.setText("Gestor de Productos");
+        jmProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmProductosActionPerformed(evt);
             }
         });
-        productos.add(jMenuItem1);
+        productos.add(jmProductos);
 
         jMenuBar1.add(productos);
 
         proveedores.setText("Proveedores");
+
+        jmProveedores.setText("Gestor de Proveedores");
+        proveedores.add(jmProveedores);
+
         jMenuBar1.add(proveedores);
 
         setJMenuBar(jMenuBar1);
@@ -110,14 +115,14 @@ public class Compras55 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_productosActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jmProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosActionPerformed
         dpEscritorio.removeAll();
         dpEscritorio.repaint();
         gestorProductos gp = new gestorProductos();
         gp.setVisible(true);
         dpEscritorio.add(gp);
         dpEscritorio.moveToFront(gp);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jmProductosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,7 +163,8 @@ public class Compras55 extends javax.swing.JFrame {
     private javax.swing.JMenu compras;
     private javax.swing.JDesktopPane dpEscritorio;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jmProductos;
+    private javax.swing.JMenuItem jmProveedores;
     private javax.swing.JMenu productos;
     private javax.swing.JMenu proveedores;
     // End of variables declaration//GEN-END:variables

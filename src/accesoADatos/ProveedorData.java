@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -52,7 +53,7 @@ public class ProveedorData {
         
     }
     
-        public Proveedor buscarProveedor(int id) {
+    public Proveedor buscarProveedor(int id) {
         Proveedor proveedor = null;
         String sql = "SELECT razonSocial, domicilio, telefono FROM proveedor WHERE idProveedor = ? ";
         PreparedStatement ps = null;
@@ -80,4 +81,60 @@ public class ProveedorData {
         return proveedor;
     }
     
+     public void modificarProveedor(Proveedor proveedor) {
+        String sql = "UPDATE proveedor SET razonSocial = ?, domicilio = ?, telefono = ? WHERE idProveedor = ?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, proveedor.getRazonSocial());
+            ps.setString(2, proveedor.getDomicilio());
+            ps.setString(3, proveedor.getTelefono());
+            ps.setInt(4, proveedor.getIdProveedor());
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificada exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El proveedor no existe");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Proveedor " + ex.getMessage());
+        }
+    }
+    
+        public void guardarProveedor(Proveedor proveedor) {
+
+        boolean existe = false;
+        List<Proveedor> listados = listarProveedores(); //Array (?)
+        for (Proveedor aux : listados) {
+            if (proveedor.getIdProveedor() == aux.getIdProveedor()) {
+                existe = true;
+            }
+        }
+        if (existe) {
+            modificarProveedor(proveedor);
+        } else {
+
+            String sql = "INSERT INTO `proveedor`(`idProveedor`, `razonSocial`, `domicilio`, `telefono`) VALUES ('[value-1]',?,?,?)";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, proveedor.getRazonSocial());
+                ps.setString(2, proveedor.getDomicilio());
+                ps.setString(3, proveedor.getTelefono());
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(null, "Proveedor añadido con éxito.");
+                }
+                ps.close();
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error de acceso: " + ex.getMessage());
+            }
+        }
+    }
+        
 }
