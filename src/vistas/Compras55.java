@@ -37,6 +37,14 @@ public class Compras55 extends javax.swing.JFrame {
         dpEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         compras = new javax.swing.JMenu();
+        jmRegistrar = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jmComprasPorFecha = new javax.swing.JMenuItem();
+        jmComprasPorProveedor = new javax.swing.JMenuItem();
+        jmProductosPorCompra = new javax.swing.JMenuItem();
+        jmProveedoresPorProducto = new javax.swing.JMenuItem();
+        jmProductosPorFechas = new javax.swing.JMenuItem();
+        jmProductosBajoStock = new javax.swing.JMenuItem();
         productos = new javax.swing.JMenu();
         jmProductos = new javax.swing.JMenuItem();
         proveedores = new javax.swing.JMenu();
@@ -62,6 +70,32 @@ public class Compras55 extends javax.swing.JFrame {
                 comprasActionPerformed(evt);
             }
         });
+
+        jmRegistrar.setText("Registrar Compra");
+        compras.add(jmRegistrar);
+
+        jMenu1.setText("Consultas");
+
+        jmComprasPorFecha.setText("Compras por Fecha");
+        jMenu1.add(jmComprasPorFecha);
+
+        jmComprasPorProveedor.setText("Compras por Proveedor");
+        jMenu1.add(jmComprasPorProveedor);
+
+        jmProductosPorCompra.setText("Productos por Compra");
+        jMenu1.add(jmProductosPorCompra);
+
+        jmProveedoresPorProducto.setText("Proveedores por Producto");
+        jMenu1.add(jmProveedoresPorProducto);
+
+        jmProductosPorFechas.setText("Productos por Fechas");
+        jMenu1.add(jmProductosPorFechas);
+
+        jmProductosBajoStock.setText("Productos con bajo Stock");
+        jMenu1.add(jmProductosBajoStock);
+
+        compras.add(jMenu1);
+
         jMenuBar1.add(compras);
 
         productos.setText("Productos");
@@ -84,6 +118,11 @@ public class Compras55 extends javax.swing.JFrame {
         proveedores.setText("Proveedores");
 
         jmProveedores.setText("Gestor de Proveedores");
+        jmProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProveedoresActionPerformed(evt);
+            }
+        });
         proveedores.add(jmProveedores);
 
         jMenuBar1.add(proveedores);
@@ -124,6 +163,15 @@ public class Compras55 extends javax.swing.JFrame {
         dpEscritorio.moveToFront(gp);
     }//GEN-LAST:event_jmProductosActionPerformed
 
+    private void jmProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProveedoresActionPerformed
+        dpEscritorio.removeAll();
+        dpEscritorio.repaint();
+        gestorProveedores gp = new gestorProveedores();
+        gp.setVisible(true);
+        dpEscritorio.add(gp);
+        dpEscritorio.moveToFront(gp);
+    }//GEN-LAST:event_jmProveedoresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -162,9 +210,17 @@ public class Compras55 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu compras;
     private javax.swing.JDesktopPane dpEscritorio;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jmComprasPorFecha;
+    private javax.swing.JMenuItem jmComprasPorProveedor;
     private javax.swing.JMenuItem jmProductos;
+    private javax.swing.JMenuItem jmProductosBajoStock;
+    private javax.swing.JMenuItem jmProductosPorCompra;
+    private javax.swing.JMenuItem jmProductosPorFechas;
     private javax.swing.JMenuItem jmProveedores;
+    private javax.swing.JMenuItem jmProveedoresPorProducto;
+    private javax.swing.JMenuItem jmRegistrar;
     private javax.swing.JMenu productos;
     private javax.swing.JMenu proveedores;
     // End of variables declaration//GEN-END:variables
