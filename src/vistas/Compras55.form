@@ -31,6 +31,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Compras por Proveedor"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmComprasPorProveedorActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jmProductosPorCompra">
                   <Properties>

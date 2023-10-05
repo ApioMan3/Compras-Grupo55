@@ -80,6 +80,11 @@ public class Compras55 extends javax.swing.JFrame {
         jMenu1.add(jmComprasPorFecha);
 
         jmComprasPorProveedor.setText("Compras por Proveedor");
+        jmComprasPorProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmComprasPorProveedorActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmComprasPorProveedor);
 
         jmProductosPorCompra.setText("Productos por Compra");
@@ -171,6 +176,15 @@ public class Compras55 extends javax.swing.JFrame {
         dpEscritorio.add(gp);
         dpEscritorio.moveToFront(gp);
     }//GEN-LAST:event_jmProveedoresActionPerformed
+
+    private void jmComprasPorProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmComprasPorProveedorActionPerformed
+        dpEscritorio.removeAll();
+        dpEscritorio.repaint();
+        ComprasPorProveedor gp = new ComprasPorProveedor();
+        gp.setVisible(true);
+        dpEscritorio.add(gp);
+        dpEscritorio.moveToFront(gp);
+    }//GEN-LAST:event_jmComprasPorProveedorActionPerformed
 
     /**
      * @param args the command line arguments
