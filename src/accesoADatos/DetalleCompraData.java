@@ -6,6 +6,7 @@
 package accesoADatos;
 
 import entidades.Compra;
+import entidades.DetalleCompra;
 import entidades.Producto;
 import entidades.Proveedor;
 import java.sql.Connection;
@@ -27,17 +28,18 @@ public class DetalleCompraData {
         con = Conexion.getConexion();
     }
     
-    public ArrayList<Compra> obtenerCompras() { 
-        ArrayList<Compra> compras = new ArrayList<>();
+    public ArrayList<DetalleCompra> obtenerCompras() { 
+        ArrayList<DetalleCompra> compras = new ArrayList<>();
         try {
-            String sql = "SELECT compra.*, proveedor.*, producto.*\n"
-                    + "FROM compra\n"
-                    + "INNER JOIN proveedor ON compras.razonSocial = proveedor.razonSocial\n"
-                    + "INNER JOIN producto ON compras.idProducto = producto.idProducto";
+            String sql = "SELECT *"
+                    + "FROM detalleCompra\n"
+                    + "JOIN compra ON compra.idCompra = detalleCompra.idCompra\n"
+                    + "JOIN producto ON compra.idProducto = producto.idProducto\n"
+                    + "JOIN proveedor ON compra.idProveedor = proveedor.idProveedor";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Compra compra = new Compra();
+                DetalleCompra detalleCompra = new DetalleCompra();
 
                 //creación del objeto producto
                 Producto producto = new Producto();
@@ -47,20 +49,24 @@ public class DetalleCompraData {
                 producto.setPrecioActual(rs.getDouble("precioActual"));
                 producto.setStock(rs.getInt("stock"));
                 producto.setEstado(rs.getBoolean("producto.estado"));
-
-                //creación del objeto proveedor
+                
                 Proveedor proveedor = new Proveedor();
                 proveedor.setIdProveedor(rs.getInt("idProveedor"));
                 proveedor.setRazonSocial(rs.getString("razonSocial"));
                 proveedor.setDomicilio(rs.getString("domicilio"));
                 proveedor.setTelefono(rs.getString("telefono"));
                 
-                //Setear los datos de la inscripción
+                Compra compra = new Compra();
                 compra.setIdCompra(rs.getInt("idCompra"));
-                compra.setProducto(producto);
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
                 compra.setProveedor(proveedor);
-
-                compras.add(compra);
+                
+                //Setear los datos de la inscripción
+                detalleCompra.setIdDetalle(rs.getInt("idDetalle"));
+                detalleCompra.setProducto(producto);
+                detalleCompra.setCantidad(rs.getInt("cantidad"));
+                detalleCompra.setPrecioCosto(rs.getInt("precioCosto"));
+                compras.add(detalleCompra);
             }
             ps.close();
 
