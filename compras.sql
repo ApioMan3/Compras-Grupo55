@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 23:19:45
+-- Tiempo de generación: 06-10-2023 a las 23:29:12
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -100,17 +100,17 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`idProveedor`, `razonSocial`, `domicilio`, `telefono`) VALUES
-(1, 'Sony', 'Calle falsa 123', '123456789'),
-(2, 'Panasonic', 'Calle falsa 123', '123456789'),
-(3, 'Philco', 'Calle falsa 123', '123456789'),
-(4, 'Intel', 'Calle falsa 123', '123456789'),
-(5, 'AMD', 'Calle falsa 123', '123456789'),
-(6, 'Razor', 'Calle falsa 123', '123456789'),
-(7, 'Asus', 'Calle falsa 123', '123456789'),
-(8, 'Admiral', 'Calle falsa 123', '123456789'),
-(9, 'Aiwa', 'Calle falsa 123', '123456789'),
-(10, 'Teltron', 'Calle falsa 123', '123456789'),
-(11, 'Pansea', 'Calle falsa 123', '123456789');
+(1, 'Sony', 'Calle falsa 123', '4256789'),
+(2, 'Panasonic', 'Argentina 525', '42564578'),
+(3, 'Philco', 'Buenos Aires 4515', '1154575123'),
+(4, 'Intel', 'Cordoba 2513', '1122151325'),
+(5, 'AMD', 'Entre Rios 54', '1131648525'),
+(6, 'Razor', 'Santa Fe 654', '1141748545'),
+(7, 'Asus', 'Alemania 502', '1131619181'),
+(8, 'Admiral', 'Italia 513', '1150263623'),
+(9, 'Aiwa', 'Portugal 515', '1151245825'),
+(10, 'Teltron', 'España 748', '1123356545'),
+(11, 'Pansea', 'La Plata 50', '42425154');
 
 --
 -- Índices para tablas volcadas
