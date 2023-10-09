@@ -77,4 +77,34 @@ public class CompraData {
         }
         return compras;
     }
+    
+    
+    public List<Compra> listarComprasPorProveedor(int id) {
+        List<Compra> compras = new ArrayList<>();
+        
+        try {
+            String sql = "SELECT compra.*, proveedor.* FROM compra JOIN proveedor ON compra.idProveedor = proveedor.idProveedor WHERE compra.idProveedor = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Proveedor proveedor = new Proveedor();
+                proveedor.setIdProveedor(rs.getInt("idProveedor"));
+                proveedor.setRazonSocial(rs.getString("razonSocial"));
+                proveedor.setDomicilio(rs.getString("domicilio"));
+                proveedor.setTelefono(rs.getString("telefono"));
+                
+                Compra compra = new Compra();
+                compra.setIdCompra(rs.getInt("idCompra"));
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compra.setProveedor(proveedor);
+                compras.add(compra);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Proveedor " + ex.getMessage());
+        }
+        return compras;
+    }
 }

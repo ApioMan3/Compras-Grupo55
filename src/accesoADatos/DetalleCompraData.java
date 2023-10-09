@@ -32,8 +32,8 @@ public class DetalleCompraData {
         try {
             String sql = "SELECT compra.*, proveedor.*, producto.*\n"
                     + "FROM compra\n"
-                    + "INNER JOIN proveedor ON compras.razonSocial = proveedor.razonSocial\n"
-                    + "INNER JOIN producto ON compras.idProducto = producto.idProducto";
+                    + "JOIN proveedor ON compras.razonSocial = proveedor.razonSocial\n"
+                    + "JOIN producto ON compras.idProducto = producto.idProducto";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -57,7 +57,7 @@ public class DetalleCompraData {
                 
                 //Setear los datos de la inscripción
                 compra.setIdCompra(rs.getInt("idCompra"));
-                compra.setProducto(producto);
+                //compra.setProducto(producto);
                 compra.setProveedor(proveedor);
 
                 compras.add(compra);
