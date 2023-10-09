@@ -31,6 +31,7 @@ public class ComprasPorProveedor extends javax.swing.JInternalFrame {
         llenarCombo();
         armarCabecera();
         llenarTabla();
+        
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,"Error al cargar los datos, verifique que existan proveedores.");
         }
