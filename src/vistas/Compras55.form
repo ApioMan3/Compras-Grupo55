@@ -16,6 +16,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registrar Compra"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmRegistrarActionPerformed"/>
+              </Events>
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="jMenu1">
               <Properties>
@@ -26,6 +29,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Compras por Fecha"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmComprasPorFechaActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jmComprasPorProveedor">
                   <Properties>
@@ -39,21 +45,33 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Productos por Compra"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmProductosPorCompraActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jmProveedoresPorProducto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Proveedores por Producto"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmProveedoresPorProductoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jmProductosPorFechas">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Productos por Fechas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmProductosPorFechasActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jmProductosBajoStock">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Productos con bajo Stock"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmProductosBajoStockActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

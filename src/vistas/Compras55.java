@@ -72,11 +72,21 @@ public class Compras55 extends javax.swing.JFrame {
         });
 
         jmRegistrar.setText("Registrar Compra");
+        jmRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmRegistrarActionPerformed(evt);
+            }
+        });
         compras.add(jmRegistrar);
 
         jMenu1.setText("Consultas");
 
         jmComprasPorFecha.setText("Compras por Fecha");
+        jmComprasPorFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmComprasPorFechaActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmComprasPorFecha);
 
         jmComprasPorProveedor.setText("Compras por Proveedor");
@@ -88,15 +98,35 @@ public class Compras55 extends javax.swing.JFrame {
         jMenu1.add(jmComprasPorProveedor);
 
         jmProductosPorCompra.setText("Productos por Compra");
+        jmProductosPorCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProductosPorCompraActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmProductosPorCompra);
 
         jmProveedoresPorProducto.setText("Proveedores por Producto");
+        jmProveedoresPorProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProveedoresPorProductoActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmProveedoresPorProducto);
 
         jmProductosPorFechas.setText("Productos por Fechas");
+        jmProductosPorFechas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProductosPorFechasActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmProductosPorFechas);
 
         jmProductosBajoStock.setText("Productos con bajo Stock");
+        jmProductosBajoStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProductosBajoStockActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmProductosBajoStock);
 
         compras.add(jMenu1);
@@ -185,6 +215,35 @@ public class Compras55 extends javax.swing.JFrame {
         dpEscritorio.add(gp);
         dpEscritorio.moveToFront(gp);
     }//GEN-LAST:event_jmComprasPorProveedorActionPerformed
+
+    private void jmRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistrarActionPerformed
+        dpEscritorio.removeAll();
+        dpEscritorio.repaint();
+        registrarCompra gp = new registrarCompra();
+        gp.setVisible(true);
+        dpEscritorio.add(gp);
+        dpEscritorio.moveToFront(gp);
+    }//GEN-LAST:event_jmRegistrarActionPerformed
+
+    private void jmComprasPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmComprasPorFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmComprasPorFechaActionPerformed
+
+    private void jmProductosPorCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosPorCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmProductosPorCompraActionPerformed
+
+    private void jmProveedoresPorProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProveedoresPorProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmProveedoresPorProductoActionPerformed
+
+    private void jmProductosPorFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosPorFechasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmProductosPorFechasActionPerformed
+
+    private void jmProductosBajoStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosBajoStockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmProductosBajoStockActionPerformed
 
     /**
      * @param args the command line arguments
