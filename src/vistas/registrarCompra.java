@@ -6,11 +6,17 @@
 package vistas;
 
 import accesoADatos.CompraData;
+import accesoADatos.DetalleCompraData;
 import accesoADatos.ProductoData;
 import accesoADatos.ProveedorData;
 import entidades.Compra;
+import entidades.DetalleCompra;
 import entidades.Producto;
 import entidades.Proveedor;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,36 +27,36 @@ import javax.swing.table.DefaultTableModel;
  */
 public class registrarCompra extends javax.swing.JInternalFrame {
 
-     private DefaultTableModel modelo = new DefaultTableModel() {
+    private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int fila, int columna) {
             return false;
         }
     };
-   
+
     public registrarCompra() {
         initComponents();
-         try {
-        initComponents();
-        llenarComboProducto();
-        llenarComboProveedor();
-        armarCabecera();
-     
-        
+        try {
+            initComponents();
+            llenarComboProducto();
+            llenarComboProveedor();
+            armarCabecera();
+            fechaActual();
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Error al cargar los datos.");
+            JOptionPane.showMessageDialog(this, "Error al cargar los datos.");
         }
-        
+
     }
 
-        private void llenarComboProducto() {
+    private void llenarComboProducto() {
         ProductoData acceso = new ProductoData();
         List<Producto> listado = acceso.listarTodosLosProductos();
         for (Producto producto : listado) {
             jCBProducto.addItem(producto);
         }
     }
-        
-      private void llenarComboProveedor() {
+
+    private void llenarComboProveedor() {
         ProveedorData acceso = new ProveedorData();
         List<Proveedor> listado = acceso.listarProveedores();
         for (Proveedor proveedor : listado) {
@@ -58,18 +64,18 @@ public class registrarCompra extends javax.swing.JInternalFrame {
         }
     }
 
-
     private void armarCabecera() {
         modelo.addColumn("ID - Producto");
         modelo.addColumn("Nombre");
-          modelo.addColumn("Cantidad");
+        modelo.addColumn("Cantidad");
         modelo.addColumn("Precio");
         jTCompras.setModel(modelo);
     }
 
-    
-    
-    
+    private void fechaActual() {
+        jDCFecha.setDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -90,7 +96,7 @@ public class registrarCompra extends javax.swing.JInternalFrame {
         jBAgregar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jBEliminar = new javax.swing.JButton();
-        jButton1Registrar = new javax.swing.JButton();
+        jBRegistrar = new javax.swing.JButton();
 
         jLabel1.setText("Proveedor:");
 
@@ -144,10 +150,10 @@ public class registrarCompra extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1Registrar.setText("Registrar");
-        jButton1Registrar.addActionListener(new java.awt.event.ActionListener() {
+        jBRegistrar.setText("Registrar");
+        jBRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1RegistrarActionPerformed(evt);
+                jBRegistrarActionPerformed(evt);
             }
         });
 
@@ -191,7 +197,7 @@ public class registrarCompra extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1Registrar)
+                .addComponent(jBRegistrar)
                 .addGap(36, 36, 36)
                 .addComponent(jBSalir)
                 .addGap(35, 35, 35))
@@ -230,7 +236,7 @@ public class registrarCompra extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBSalir)
-                    .addComponent(jButton1Registrar))
+                    .addComponent(jBRegistrar))
                 .addGap(141, 141, 141))
         );
 
@@ -238,42 +244,107 @@ public class registrarCompra extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-       int fila = jTCompras.getSelectedRow();
-       if(fila>-1){
-           modelo.removeRow(fila);
-       } else {
-           JOptionPane.showMessageDialog(this, "Seleccione un producto a eliminar.");
-       }
+        int fila = jTCompras.getSelectedRow();
+        if (fila > -1) {
+            modelo.removeRow(fila);
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione un producto a eliminar.");
+        }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        
-        try{
-        Producto producto = (Producto) jCBProducto.getSelectedItem();
-        double precio = Double.parseDouble(jTFPrecio.getText());
-        int cantidad = Integer.parseInt(jTFCantidad.getText());
-            modelo.addRow(new Object[]{producto.getIdProducto(), producto.getNombreProducto(), precio, cantidad});
-            jTFPrecio.setText("");
-            jTFCantidad.setText("");
-        }catch(NumberFormatException e){
+        try {
+            Producto producto = (Producto) jCBProducto.getSelectedItem();
+            double precio = Double.parseDouble(jTFPrecio.getText());
+            int cantidad = Integer.parseInt(jTFCantidad.getText());
+            boolean actualizado = false;
+
+            //chequeo si existe agregado
+            if (jTCompras.getRowCount() > 0) {
+                for (int i = 0; i < jTCompras.getRowCount(); i++) {
+                    int actual = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+                    System.out.println(actual);
+                    if (actual == producto.getIdProducto()) {
+                        modelo.setValueAt(Integer.parseInt(modelo.getValueAt(i, 2).toString()) + cantidad, i, 2);
+                        actualizado = true;
+                    }
+                }
+            }
+            //si no existia, se agrega
+            if (!actualizado) {
+                modelo.addRow(new Object[]{producto.getIdProducto(), producto.getNombreProducto(), cantidad, precio});
+            }
+
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en campos numéricos.");
-        }        
+        }
+
+        //vaciar campos
+        jTFPrecio.setText("");
+        jTFCantidad.setText("");
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
-    private void jButton1RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1RegistrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1RegistrarActionPerformed
+    private void jBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarActionPerformed
+
+        try {
+
+            if (jDCFecha.getDate() == null || jDCFecha.getDate().after(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))) {
+                JOptionPane.showMessageDialog(this, "La fecha ingresada no es válida.");
+            } else {
+                if (jTCompras.getRowCount() > 0) {
+                    ProductoData accesoProducto = new ProductoData();
+                    Compra compra = new Compra();
+                    CompraData accesoCompra = new CompraData();
+                    DetalleCompraData accesoDetalle = new DetalleCompraData();
+                    DetalleCompra detalle = new DetalleCompra();
+
+                    compra.setFecha(jDCFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                    compra.setProveedor((Proveedor) jCBProveedor.getSelectedItem());
+                    int idcompra = accesoCompra.guardarCompra(compra);
+                    compra.setIdCompra(idcompra);
+
+                    System.out.println("Cantidad de filas: " + jTCompras.getRowCount());
+
+                    for (int i = 0; i < jTCompras.getRowCount(); i++) {
+                        Producto producto = accesoProducto.buscarProducto(Integer.parseInt(modelo.getValueAt(i, 0).toString()));
+                        System.out.println(producto);
+                        detalle.setProducto(producto);
+                        detalle.setCompra(compra);
+                        detalle.setCantidad(Integer.parseInt(modelo.getValueAt(i, 2).toString()));
+                        detalle.setPrecioCosto(Double.parseDouble(modelo.getValueAt(i, 3).toString()));
+                        accesoDetalle.guardarDetalleCompra(detalle, idcompra);
+                    }
+
+                    int filas = modelo.getRowCount();
+                    for (int i = filas - 1; i >= 0; i--) {
+                        modelo.removeRow(i);
+                    }
+                    fechaActual();
+                    jTFCantidad.setText("");
+                    jTFPrecio.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No hay detalles para agregar.");
+                }
+            }
+        } catch (Exception e) {
+            if (jTCompras.getRowCount() > 0) {
+                JOptionPane.showMessageDialog(this, "Error en la fecha y en los productos agregados.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error en la fecha ingresada.");
+            }
+        }
+    }//GEN-LAST:event_jBRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBRegistrar;
     private javax.swing.JButton jBSalir;
-    private javax.swing.JButton jButton1Registrar;
     private javax.swing.JComboBox<Producto> jCBProducto;
     private javax.swing.JComboBox<Proveedor> jCBProveedor;
     private com.toedter.calendar.JDateChooser jDCFecha;

@@ -6,28 +6,31 @@
 package accesoADatos;
 
 import entidades.Compra;
+import entidades.DetalleCompra;
 import entidades.Producto;
 import entidades.Proveedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  * productos, cantidades y precio costo
+ *
  * @author tasha
  */
 public class DetalleCompraData {
-    
-     private Connection con = null;
+
+    private Connection con = null;
 
     public DetalleCompraData() {
         con = Conexion.getConexion();
     }
-    
-    public ArrayList<Compra> obtenerCompras() { 
+
+    public ArrayList<Compra> obtenerCompras() {
         ArrayList<Compra> compras = new ArrayList<>();
         try {
             String sql = "SELECT compra.*, proveedor.*, producto.*\n"
@@ -54,7 +57,7 @@ public class DetalleCompraData {
                 proveedor.setRazonSocial(rs.getString("razonSocial"));
                 proveedor.setDomicilio(rs.getString("domicilio"));
                 proveedor.setTelefono(rs.getString("telefono"));
-                
+
                 //Setear los datos de la inscripción
                 compra.setIdCompra(rs.getInt("idCompra"));
                 //compra.setProducto(producto);
@@ -69,5 +72,28 @@ public class DetalleCompraData {
         }
         return compras;
     }
-    
+
+    public void guardarDetalleCompra(DetalleCompra detalle, int idCompra) {
+        String sql = "INSERT INTO detallecompra(`cantidad`,`precioCosto`,`idCompra`,`idProducto`) VALUES (?,?,?,?)";
+        int cantidadDetalles = 0;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, detalle.getCantidad());
+            ps.setDouble(2, detalle.getPrecioCosto());
+            ps.setInt(3, idCompra);
+            ps.setInt(4, detalle.getProducto().getIdProducto());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+
+            if (rs.next()) {
+                cantidadDetalles++;
+            }
+            
+            JOptionPane.showMessageDialog(null, cantidadDetalles + " detalle/s añadido/s con exito.");
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de acceso: " + ex.getMessage());
+        }
+    }
 }
