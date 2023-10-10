@@ -54,7 +54,7 @@ public class CompraData {
         List<Compra> compras = new ArrayList<>();
         
         try {
-            String sql = "SELECT * FROM compra WHERE fecha = ?";
+            String sql = "SELECT * FROM compra JOIN proveedor ON compra.idProveedor = proveedor.idProveedor WHERE fecha = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fecha));
             ResultSet rs = ps.executeQuery();

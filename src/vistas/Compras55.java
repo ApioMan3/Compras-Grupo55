@@ -226,7 +226,12 @@ public class Compras55 extends javax.swing.JFrame {
     }//GEN-LAST:event_jmRegistrarActionPerformed
 
     private void jmComprasPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmComprasPorFechaActionPerformed
-        // TODO add your handling code here:
+          dpEscritorio.removeAll();
+        dpEscritorio.repaint();
+        ComprasPorFecha gp = new ComprasPorFecha();
+        gp.setVisible(true);
+        dpEscritorio.add(gp);
+        dpEscritorio.moveToFront(gp);
     }//GEN-LAST:event_jmComprasPorFechaActionPerformed
 
     private void jmProductosPorCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosPorCompraActionPerformed

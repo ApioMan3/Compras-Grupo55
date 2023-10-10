@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -95,5 +96,55 @@ public class DetalleCompraData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de acceso: " + ex.getMessage());
         }
+    }
+    
+    public List<DetalleCompra> obtenerProductosIdCompra(int idCompra) {
+        List<DetalleCompra> detalle = new ArrayList<>();
+        try {
+            String sql = "SELECT *\n"
+                    + "FROM compra\n"
+                    + "JOIN proveedor ON compra.idProveedor = proveedor.idProveedor\n"
+                    + "JOIN detalleCompra ON compra.idCompra = detalleCompra.idCompra\n"
+                    + "JOIN producto ON detalleCompra.idProducto = producto.idProducto\n"
+                    + "WHERE compra.idCompra = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idCompra);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                DetalleCompra compraD = new DetalleCompra();
+                Compra compra = new Compra();
+
+                //creación del objeto producto
+                Producto producto = new Producto();
+                producto.setIdProducto(rs.getInt("idProducto"));
+                producto.setNombreProducto(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecioActual(rs.getDouble("precioActual"));
+                producto.setStock(rs.getInt("stock"));
+                producto.setEstado(rs.getBoolean("producto.estado"));
+
+                //creación del objeto proveedor
+                Proveedor proveedor = new Proveedor();
+                proveedor.setIdProveedor(rs.getInt("idProveedor"));
+                proveedor.setRazonSocial(rs.getString("razonSocial"));
+                proveedor.setDomicilio(rs.getString("domicilio"));
+                proveedor.setTelefono(rs.getString("telefono"));
+
+                //Setear los datos de la inscripción
+                compra.setIdCompra(rs.getInt("idCompra"));
+                //compra.setProducto(producto);
+                compra.setProveedor(proveedor);
+
+                compraD.setProducto(producto);
+                compraD.setCantidad(Integer.parseInt(rs.getString("detalleCompra.cantidad")));
+                compraD.setPrecioCosto(Double.parseDouble(rs.getString("detalleCompra.precioCosto")));
+                detalle.add(compraD);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla." + ex.getMessage());
+        }
+        return detalle;
     }
 }
