@@ -263,7 +263,6 @@ public class registrarCompra extends javax.swing.JInternalFrame {
             if (jTCompras.getRowCount() > 0) {
                 for (int i = 0; i < jTCompras.getRowCount(); i++) {
                     int actual = Integer.parseInt(modelo.getValueAt(i, 0).toString());
-                    System.out.println(actual);
                     if (actual == producto.getIdProducto()) {
                         modelo.setValueAt(Integer.parseInt(modelo.getValueAt(i, 2).toString()) + cantidad, i, 2);
                         actualizado = true;
@@ -307,16 +306,15 @@ public class registrarCompra extends javax.swing.JInternalFrame {
                     int idcompra = accesoCompra.guardarCompra(compra);
                     compra.setIdCompra(idcompra);
 
-                    System.out.println("Cantidad de filas: " + jTCompras.getRowCount());
 
                     for (int i = 0; i < jTCompras.getRowCount(); i++) {
                         Producto producto = accesoProducto.buscarProducto(Integer.parseInt(modelo.getValueAt(i, 0).toString()));
-                        System.out.println(producto);
                         detalle.setProducto(producto);
                         detalle.setCompra(compra);
                         detalle.setCantidad(Integer.parseInt(modelo.getValueAt(i, 2).toString()));
                         detalle.setPrecioCosto(Double.parseDouble(modelo.getValueAt(i, 3).toString()));
                         accesoDetalle.guardarDetalleCompra(detalle, idcompra);
+                        accesoProducto.actualizarStock(Integer.parseInt(modelo.getValueAt(i, 2).toString()), Integer.parseInt(modelo.getValueAt(i, 0).toString()));
                     }
 
                     int filas = modelo.getRowCount();
@@ -331,11 +329,7 @@ public class registrarCompra extends javax.swing.JInternalFrame {
                 }
             }
         } catch (Exception e) {
-            if (jTCompras.getRowCount() > 0) {
-                JOptionPane.showMessageDialog(this, "Error en la fecha y en los productos agregados.");
-            } else {
                 JOptionPane.showMessageDialog(this, "Error en la fecha ingresada.");
-            }
         }
     }//GEN-LAST:event_jBRegistrarActionPerformed
 

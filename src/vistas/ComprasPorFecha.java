@@ -25,60 +25,60 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ComprasPorFecha extends javax.swing.JInternalFrame {
 
-   private DefaultTableModel modelo = new DefaultTableModel() {
+    private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int fila, int columna) {
             return false;
         }
     };
-   
+
     public ComprasPorFecha() {
         try {
-        initComponents();
-        armarCabecera();
-         fechaActual();
-        llenarTabla();
-        
+            initComponents();
+            armarCabecera();
+            fechaActual();
+            llenarTabla();
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Error al cargar los datos, verifique los datos ingresados.");
+            JOptionPane.showMessageDialog(this, "Error al cargar los datos, verifique los datos ingresados.");
         }
 
     }
 
-
-      private void armarCabecera() {
+    private void armarCabecera() {
         modelo.addColumn("ID - Compra");
         modelo.addColumn("Proveedor");
         modelo.addColumn("Producto");
         jTComrpasPorFecha.setModel(modelo);
     }
 
-       private void fechaActual() {
+    private void fechaActual() {
         jDCFecha.setDate(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
     }
-      
+
     private void llenarTabla() {
 
         int filas = modelo.getRowCount();
         for (int i = filas - 1; i >= 0; i--) {
             modelo.removeRow(i);
         }
+
         int cantidad = 0;
         CompraData acceso = new CompraData();
         DetalleCompraData accesoD = new DetalleCompraData();
-        
-       LocalDate fecha = jDCFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        LocalDate fecha = jDCFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         List<Compra> compras = acceso.listarComprasPorFecha(fecha);
-        
+
         for (Compra compra : compras) {
             List<DetalleCompra> comprasD = accesoD.obtenerProductosIdCompra(compra.getIdCompra());
-            for(DetalleCompra detalle : comprasD){
-          modelo.addRow(new Object[]{compra.getIdCompra(), compra.getProveedor().getRazonSocial(), detalle.getProducto().getNombreProducto()});
-            cantidad++;
+            for (DetalleCompra detalle : comprasD) {
+                modelo.addRow(new Object[]{compra.getIdCompra(), compra.getProveedor().getRazonSocial(), detalle.getProducto().getNombreProducto()});
+                cantidad++;
             }
         }
-        lResumen.setText("Cantidad de compras realizadas en la fecha: "+" : "+cantidad);
+        lResumen.setText("Cantidad de compras realizadas en la fecha: " + fecha.toString() + " : " + cantidad);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -89,6 +89,12 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
         lResumen = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTComrpasPorFecha = new javax.swing.JTable();
+
+        jDCFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDCFechaPropertyChange(evt);
+            }
+        });
 
         jLFecha.setText("Fecha:");
 
@@ -164,8 +170,12 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jDCFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCFechaPropertyChange
+        llenarTabla();
+    }//GEN-LAST:event_jDCFechaPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -210,28 +210,28 @@ public class Compras55 extends javax.swing.JFrame {
     private void jmComprasPorProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmComprasPorProveedorActionPerformed
         dpEscritorio.removeAll();
         dpEscritorio.repaint();
-        ComprasPorProveedor gp = new ComprasPorProveedor();
-        gp.setVisible(true);
-        dpEscritorio.add(gp);
-        dpEscritorio.moveToFront(gp);
+        ComprasPorProveedor cp = new ComprasPorProveedor();
+        cp.setVisible(true);
+        dpEscritorio.add(cp);
+        dpEscritorio.moveToFront(cp);
     }//GEN-LAST:event_jmComprasPorProveedorActionPerformed
 
     private void jmRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistrarActionPerformed
         dpEscritorio.removeAll();
         dpEscritorio.repaint();
-        registrarCompra gp = new registrarCompra();
-        gp.setVisible(true);
-        dpEscritorio.add(gp);
-        dpEscritorio.moveToFront(gp);
+        registrarCompra rc = new registrarCompra();
+        rc.setVisible(true);
+        dpEscritorio.add(rc);
+        dpEscritorio.moveToFront(rc);
     }//GEN-LAST:event_jmRegistrarActionPerformed
 
     private void jmComprasPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmComprasPorFechaActionPerformed
-          dpEscritorio.removeAll();
+        dpEscritorio.removeAll();
         dpEscritorio.repaint();
-        ComprasPorFecha gp = new ComprasPorFecha();
-        gp.setVisible(true);
-        dpEscritorio.add(gp);
-        dpEscritorio.moveToFront(gp);
+        ComprasPorFecha cf = new ComprasPorFecha();
+        cf.setVisible(true);
+        dpEscritorio.add(cf);
+        dpEscritorio.moveToFront(cf);
     }//GEN-LAST:event_jmComprasPorFechaActionPerformed
 
     private void jmProductosPorCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosPorCompraActionPerformed
@@ -247,7 +247,12 @@ public class Compras55 extends javax.swing.JFrame {
     }//GEN-LAST:event_jmProductosPorFechasActionPerformed
 
     private void jmProductosBajoStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosBajoStockActionPerformed
-        // TODO add your handling code here:
+        dpEscritorio.removeAll();
+        dpEscritorio.repaint();
+        ProductosConBajoStock ps = new ProductosConBajoStock();
+        ps.setVisible(true);
+        dpEscritorio.add(ps);
+        dpEscritorio.moveToFront(ps);
     }//GEN-LAST:event_jmProductosBajoStockActionPerformed
 
     /**
