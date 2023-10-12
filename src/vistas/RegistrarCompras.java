@@ -15,9 +15,7 @@ import entidades.Producto;
 import entidades.Proveedor;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import static java.time.temporal.TemporalQueries.localDate;
-import java.util.List;
+import java.time.ZoneId;import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,15 +23,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tasha
  */
-public class RegistrarCompra extends javax.swing.JInternalFrame {
+public class RegistrarCompras extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
         public boolean isCellEditable(int fila, int columna) {
             return false;
         }
     };
 
-    public RegistrarCompra() {
+    public RegistrarCompras() {
         initComponents();
         try {
             initComponents();
@@ -96,7 +95,7 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         jBAgregar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jBEliminar = new javax.swing.JButton();
-        jButton1Registrar = new javax.swing.JButton();
+        jbRegistrar = new javax.swing.JButton();
 
         jLabel1.setText("Proveedor:");
 
@@ -150,10 +149,10 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1Registrar.setText("Registrar");
-        jButton1Registrar.addActionListener(new java.awt.event.ActionListener() {
+        jbRegistrar.setText("Registrar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1RegistrarActionPerformed(evt);
+                jbRegistrarActionPerformed(evt);
             }
         });
 
@@ -197,8 +196,8 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1Registrar)
-                .addGap(36, 36, 36)
+                .addComponent(jbRegistrar)
+                .addGap(18, 18, 18)
                 .addComponent(jBSalir)
                 .addGap(35, 35, 35))
         );
@@ -231,12 +230,12 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBEliminar)
                     .addComponent(jBAgregar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBSalir)
-                    .addComponent(jButton1Registrar))
+                    .addComponent(jbRegistrar))
                 .addGap(141, 141, 141))
         );
 
@@ -287,9 +286,12 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
-    private void jBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarActionPerformed
+    private void jButton1RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarActionPerformed
 
-        try {
+    }//GEN-LAST:event_jBRegistrarActionPerformed
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+   try {
 
             if (jDCFecha.getDate() == null || jDCFecha.getDate().after(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))) {
                 JOptionPane.showMessageDialog(this, "La fecha ingresada no es válida.");
@@ -331,14 +333,13 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error en la fecha ingresada.");
         }
-    }//GEN-LAST:event_jBRegistrarActionPerformed
+    }//GEN-LAST:event_jbRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBSalir;
-    private javax.swing.JButton jButton1Registrar;
     private javax.swing.JComboBox<Producto> jCBProducto;
     private javax.swing.JComboBox<Proveedor> jCBProveedor;
     private com.toedter.calendar.JDateChooser jDCFecha;
@@ -352,5 +353,6 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTCompras;
     private javax.swing.JTextField jTFCantidad;
     private javax.swing.JTextField jTFPrecio;
+    private javax.swing.JButton jbRegistrar;
     // End of variables declaration//GEN-END:variables
 }

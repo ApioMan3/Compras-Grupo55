@@ -219,7 +219,7 @@ public class Compras55 extends javax.swing.JFrame {
     private void jmRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRegistrarActionPerformed
         dpEscritorio.removeAll();
         dpEscritorio.repaint();
-        RegistrarCompra rc = new RegistrarCompra();
+        RegistrarCompras rc = new RegistrarCompras();
         rc.setVisible(true);
         dpEscritorio.add(rc);
         dpEscritorio.moveToFront(rc);
