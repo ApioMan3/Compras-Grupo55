@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
  *
  * @author ApioMan
  */
-public class gestorProveedores extends javax.swing.JInternalFrame {
+public class GestorProveedores extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form gestorProveedores
      */
-    public gestorProveedores() {
+    public GestorProveedores() {
         initComponents();
     }
 

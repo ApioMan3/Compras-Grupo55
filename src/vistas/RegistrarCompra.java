@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tasha
  */
-public class registrarCompra extends javax.swing.JInternalFrame {
+public class RegistrarCompra extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int fila, int columna) {
@@ -33,7 +33,7 @@ public class registrarCompra extends javax.swing.JInternalFrame {
         }
     };
 
-    public registrarCompra() {
+    public RegistrarCompra() {
         initComponents();
         try {
             initComponents();
@@ -96,7 +96,7 @@ public class registrarCompra extends javax.swing.JInternalFrame {
         jBAgregar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jBEliminar = new javax.swing.JButton();
-        jBRegistrar = new javax.swing.JButton();
+        jButton1Registrar = new javax.swing.JButton();
 
         jLabel1.setText("Proveedor:");
 
@@ -150,10 +150,10 @@ public class registrarCompra extends javax.swing.JInternalFrame {
             }
         });
 
-        jBRegistrar.setText("Registrar");
-        jBRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1Registrar.setText("Registrar");
+        jButton1Registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBRegistrarActionPerformed(evt);
+                jButton1RegistrarActionPerformed(evt);
             }
         });
 
@@ -197,7 +197,7 @@ public class registrarCompra extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBRegistrar)
+                .addComponent(jButton1Registrar)
                 .addGap(36, 36, 36)
                 .addComponent(jBSalir)
                 .addGap(35, 35, 35))
@@ -236,7 +236,7 @@ public class registrarCompra extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBSalir)
-                    .addComponent(jBRegistrar))
+                    .addComponent(jButton1Registrar))
                 .addGap(141, 141, 141))
         );
 
@@ -337,8 +337,8 @@ public class registrarCompra extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBRegistrar;
     private javax.swing.JButton jBSalir;
+    private javax.swing.JButton jButton1Registrar;
     private javax.swing.JComboBox<Producto> jCBProducto;
     private javax.swing.JComboBox<Proveedor> jCBProveedor;
     private com.toedter.calendar.JDateChooser jDCFecha;
