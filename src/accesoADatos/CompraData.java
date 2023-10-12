@@ -79,7 +79,6 @@ public class CompraData {
         return compras;
     }
     
-    
     public List<Compra> listarComprasPorProveedor(int id) {
         List<Compra> compras = new ArrayList<>();
         
