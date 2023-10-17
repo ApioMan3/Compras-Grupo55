@@ -61,6 +61,7 @@ public class ProductosPorCompra extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en Id. Compra.");
         }
+                jTFIdCompra.setText("");
 
     }
 

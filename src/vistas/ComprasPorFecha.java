@@ -47,7 +47,6 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
     private void armarCabecera() {
         modelo.addColumn("ID - Compra");
         modelo.addColumn("Proveedor");
-        modelo.addColumn("Producto");
         jTComrpasPorFecha.setModel(modelo);
     }
 
@@ -71,10 +70,8 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
 
         for (Compra compra : compras) {
             List<DetalleCompra> comprasD = accesoD.obtenerProductosIdCompra(compra.getIdCompra());
-            for (DetalleCompra detalle : comprasD) {
-                modelo.addRow(new Object[]{compra.getIdCompra(), compra.getProveedor().getRazonSocial(), detalle.getProducto().getNombreProducto()});
+                modelo.addRow(new Object[]{compra.getIdCompra(), compra.getProveedor().getRazonSocial()});
                 cantidad++;
-            }
         }
         lResumen.setText("Cantidad de compras realizadas en la fecha: " + fecha.toString() + " : " + cantidad);
     }
