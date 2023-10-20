@@ -56,6 +56,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Id:");
 
+        jBBuscar.setBackground(new java.awt.Color(255, 255, 204));
         jBBuscar.setText("Buscar");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +72,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
 
         estadoII.setText("Estado: ");
 
+        nuevo.setBackground(new java.awt.Color(255, 255, 204));
         nuevo.setText("Nuevo");
         nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +80,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        eliminar.setBackground(new java.awt.Color(255, 255, 204));
         eliminar.setText("Eliminar");
         eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +88,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        guardar.setBackground(new java.awt.Color(255, 255, 204));
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +96,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        salir.setBackground(new java.awt.Color(255, 255, 204));
         salir.setText("Salir");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

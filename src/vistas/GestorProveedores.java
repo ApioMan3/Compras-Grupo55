@@ -54,6 +54,7 @@ public class GestorProveedores extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Teléfono:");
 
+        bBuscar.setBackground(new java.awt.Color(255, 255, 204));
         bBuscar.setText("Buscar");
         bBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +62,7 @@ public class GestorProveedores extends javax.swing.JInternalFrame {
             }
         });
 
+        bNuevo.setBackground(new java.awt.Color(255, 255, 204));
         bNuevo.setText("Nuevo");
         bNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +70,7 @@ public class GestorProveedores extends javax.swing.JInternalFrame {
             }
         });
 
+        bGuardar.setBackground(new java.awt.Color(255, 255, 204));
         bGuardar.setText("Guardar");
         bGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +78,7 @@ public class GestorProveedores extends javax.swing.JInternalFrame {
             }
         });
 
+        bSalir.setBackground(new java.awt.Color(255, 255, 204));
         bSalir.setText("Salir");
         bSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

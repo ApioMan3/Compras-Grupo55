@@ -95,6 +95,7 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
 
         jLFecha.setText("Fecha:");
 
+        jBSalir.setBackground(new java.awt.Color(255, 255, 204));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

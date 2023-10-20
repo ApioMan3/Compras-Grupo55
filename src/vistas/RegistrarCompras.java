@@ -99,6 +99,7 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Proveedor:");
 
+        jBSalir.setBackground(new java.awt.Color(255, 255, 204));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +134,7 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Cantidad de unidades:");
 
+        jBAgregar.setBackground(new java.awt.Color(255, 255, 204));
         jBAgregar.setText("Agregar");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +144,7 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Precio:");
 
+        jBEliminar.setBackground(new java.awt.Color(255, 255, 204));
         jBEliminar.setText("Eliminar");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +152,7 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
             }
         });
 
+        jbRegistrar.setBackground(new java.awt.Color(255, 255, 204));
         jbRegistrar.setText("Registrar");
         jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

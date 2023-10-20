@@ -87,6 +87,7 @@ public class ProductosPorCompra extends javax.swing.JInternalFrame {
 
         lidCompra.setText("Id. Compra:");
 
+        jBBuscar.setBackground(new java.awt.Color(255, 255, 204));
         jBBuscar.setText("Buscar");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +116,7 @@ public class ProductosPorCompra extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTCompras);
 
+        jBSalir.setBackground(new java.awt.Color(255, 255, 204));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

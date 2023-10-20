@@ -122,6 +122,7 @@ public class ProductosPorFecha extends javax.swing.JInternalFrame {
 
         lResumen.setText("Cantidad de productos:");
 
+        jBSalir.setBackground(new java.awt.Color(255, 255, 204));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
