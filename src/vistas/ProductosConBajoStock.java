@@ -65,6 +65,7 @@ public class ProductosConBajoStock extends javax.swing.JInternalFrame {
         setToolTipText("Productos con bajo stockasdas");
         setPreferredSize(new java.awt.Dimension(500, 500));
 
+        jtProductos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

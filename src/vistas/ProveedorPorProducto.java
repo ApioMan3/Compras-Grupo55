@@ -66,6 +66,7 @@ public class ProveedorPorProducto extends javax.swing.JInternalFrame {
             }
         });
 
+        tCompras.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

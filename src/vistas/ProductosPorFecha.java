@@ -99,6 +99,7 @@ public class ProductosPorFecha extends javax.swing.JInternalFrame {
             }
         });
 
+        jTProductos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -118,6 +119,7 @@ public class ProductosPorFecha extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTProductos.setToolTipText("");
         jScrollPane1.setViewportView(jTProductos);
 
         lResumen.setText("Cantidad de productos:");

@@ -95,6 +95,7 @@ public class ProductosPorCompra extends javax.swing.JInternalFrame {
             }
         });
 
+        jTCompras.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
