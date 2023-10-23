@@ -105,7 +105,7 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
 
         lResumen.setText("Cantidad de compras realizadas: ");
 
-        jTComrpasPorFecha.setBackground(new java.awt.Color(255, 255, 204));
+        jTComrpasPorFecha.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTComrpasPorFecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},

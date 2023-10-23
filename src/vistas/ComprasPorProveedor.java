@@ -65,7 +65,6 @@ public class ComprasPorProveedor extends javax.swing.JInternalFrame {
             }
         });
 
-        tCompras.setBackground(new java.awt.Color(255, 255, 204));
         tCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
