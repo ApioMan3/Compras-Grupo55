@@ -11,11 +11,14 @@ import accesoADatos.ProveedorData;
 import entidades.Compra;
 import entidades.DetalleCompra;
 import entidades.Proveedor;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,6 +38,7 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
         try {
             initComponents();
             armarCabecera();
+            atajos();
             fechaActual();
             llenarTabla();
 
@@ -64,16 +68,20 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
         int cantidad = 0;
         CompraData acceso = new CompraData();
         DetalleCompraData accesoD = new DetalleCompraData();
+        try {
+            LocalDate fecha = jDCFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            List<Compra> compras = acceso.listarComprasPorFecha(fecha);
 
-        LocalDate fecha = jDCFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        List<Compra> compras = acceso.listarComprasPorFecha(fecha);
-
-        for (Compra compra : compras) {
-            List<DetalleCompra> comprasD = accesoD.obtenerProductosIdCompra(compra.getIdCompra());
+            for (Compra compra : compras) {
+                List<DetalleCompra> comprasD = accesoD.obtenerProductosIdCompra(compra.getIdCompra());
                 modelo.addRow(new Object[]{compra.getIdCompra(), compra.getProveedor().getRazonSocial()});
                 cantidad++;
+            }
+            lResumen.setText("Cantidad de compras realizadas en la fecha: " + fecha.toString() + " : " + cantidad);
         }
-        lResumen.setText("Cantidad de compras realizadas en la fecha: " + fecha.toString() + " : " + cantidad);
+        catch(Exception e){
+        JOptionPane.showMessageDialog(this,"Error en la fecha");}
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -86,6 +94,12 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
         lResumen = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTComrpasPorFecha = new javax.swing.JTable();
+
+        try {
+            setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
 
         jDCFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -174,7 +188,17 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
         llenarTabla();
     }//GEN-LAST:event_jDCFechaPropertyChange
 
-
+    private void atajos() {
+        jBSalir.setFocusable(true);
+        jBSalir.requestFocusInWindow();
+        jBSalir.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    dispose();
+                }
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSalir;
     private com.toedter.calendar.JDateChooser jDCFecha;
