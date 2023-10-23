@@ -5,6 +5,10 @@
  */
 package vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author tasha
@@ -22,6 +26,7 @@ public class Compras55 extends javax.swing.JFrame {
      *
      */
     public Compras55() {
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/ICON.png")).getImage());
         initComponents();
     }
 
@@ -34,7 +39,8 @@ public class Compras55 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dpEscritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon (getClass().getResource("/imagenes/fondo.png")); Image image = icon.getImage();
+        dpEscritorio = new javax.swing.JDesktopPane(){     public void paintComponent(Graphics g){         g.drawImage (image,0,0,getWidth(),getHeight(),this);      } };
         jMenuBar1 = new javax.swing.JMenuBar();
         compras = new javax.swing.JMenu();
         jmRegistrar = new javax.swing.JMenuItem();
@@ -51,7 +57,8 @@ public class Compras55 extends javax.swing.JFrame {
         jmProveedores = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 650));
+        setTitle("Gestor de Compras - Grupo 55");
+        setPreferredSize(new java.awt.Dimension(830, 650));
 
         javax.swing.GroupLayout dpEscritorioLayout = new javax.swing.GroupLayout(dpEscritorio);
         dpEscritorio.setLayout(dpEscritorioLayout);

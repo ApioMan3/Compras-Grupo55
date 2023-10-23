@@ -50,6 +50,8 @@
                               <Component id="estadoII" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               <Component id="rbEstado" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lEstado" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -126,6 +128,7 @@
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="estadoII" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="rbEstado" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lEstado" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
@@ -182,6 +185,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbEstado">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbEstadoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="nuevo">
       <Properties>
@@ -225,6 +231,11 @@
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator2">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lEstado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Inactivo"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

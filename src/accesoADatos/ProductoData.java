@@ -74,7 +74,7 @@ public class ProductoData {
 
     public Producto buscarProducto(int id) {
         Producto producto = null;
-        String sql = "SELECT nombre, descripcion, precioActual, stock, estado FROM producto WHERE idProducto = ? AND estado = 1";
+        String sql = "SELECT nombre, descripcion, precioActual, stock, estado FROM producto WHERE idProducto = ?";
         PreparedStatement ps = null;
 
         try {
@@ -89,11 +89,10 @@ public class ProductoData {
                 producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecioActual(rs.getDouble("precioActual"));
                 producto.setStock(rs.getInt("stock"));
-                producto.setEstado(true);
+                producto.setEstado(rs.getBoolean("estado"));
 
             } else {
-                JOptionPane.showMessageDialog(null, "No existe el producto o fue dado de baja."
-                        + " Revise el apartado de Gestor de Productos.");
+                JOptionPane.showMessageDialog(null, "No existe el producto con dicho ID.");
             }
             ps.close();
         } catch (SQLException ex) {

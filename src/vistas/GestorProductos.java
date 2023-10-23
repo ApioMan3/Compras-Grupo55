@@ -53,6 +53,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         tfStock = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        lEstado = new javax.swing.JLabel();
 
         jLabel1.setText("Id:");
 
@@ -70,6 +71,12 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         precio.setText("Precio:");
 
         estadoII.setText("Estado: ");
+
+        rbEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbEstadoActionPerformed(evt);
+            }
+        });
 
         nuevo.setText("Nuevo");
         nuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +107,8 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         });
 
         jLabel2.setText("Stock");
+
+        lEstado.setText("Inactivo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,6 +141,8 @@ public class GestorProductos extends javax.swing.JInternalFrame {
                                 .addComponent(estadoII)
                                 .addGap(54, 54, 54)
                                 .addComponent(rbEstado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lEstado)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +199,8 @@ public class GestorProductos extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(estadoII)
-                    .addComponent(rbEstado))
+                    .addComponent(rbEstado)
+                    .addComponent(lEstado))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(nuevo)
@@ -213,6 +225,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
                 tfDescripcion.setText(producto.getDescripcion());
                 tfStock.setText(producto.getStock() + "");
                 tfPrecio.setText(producto.getPrecioActual() + "");
+                estado();
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Error en el campo ID.");
@@ -290,6 +303,10 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_salirActionPerformed
 
+    private void rbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEstadoActionPerformed
+        estado();
+    }//GEN-LAST:event_rbEstadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel descripcion;
@@ -301,6 +318,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lEstado;
     private javax.swing.JLabel nombre;
     private javax.swing.JButton nuevo;
     private javax.swing.JLabel precio;
@@ -320,6 +338,7 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         tfPrecio.setText("");
         tfStock.setText("");
         rbEstado.setSelected(false);
+        estado();
     }
 
     private Producto crearProducto() {
@@ -342,4 +361,12 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         producto.setEstado(rbEstado.isSelected());
         return producto;
     }
+    
+    private void estado(){
+    if(rbEstado.isSelected()){
+    lEstado.setText("Activo");
+    }else{
+    lEstado.setText("Inactivo");}
+        
+        }
 }
