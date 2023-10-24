@@ -1,12 +1,8 @@
 
 package vistas;
 
-import accesoADatos.CompraData;
 import accesoADatos.DetalleCompraData;
 import accesoADatos.ProductoData;
-import accesoADatos.ProveedorData;
-import entidades.Compra;
-import entidades.DetalleCompra;
 import entidades.Producto;
 import entidades.Proveedor;
 import java.util.List;

@@ -47,11 +47,11 @@ public class Compras55 extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jmComprasPorFecha = new javax.swing.JMenuItem();
         jmComprasPorProveedor = new javax.swing.JMenuItem();
+        jmProductosBajoStock = new javax.swing.JMenuItem();
         jmProductosPorCompra = new javax.swing.JMenuItem();
+        jmProductosPorFechas = new javax.swing.JMenuItem();
         jmProductosPorProveedor = new javax.swing.JMenuItem();
         jmProveedorPorProducto = new javax.swing.JMenuItem();
-        jmProductosPorFechas = new javax.swing.JMenuItem();
-        jmProductosBajoStock = new javax.swing.JMenuItem();
         productos = new javax.swing.JMenu();
         jmProductos = new javax.swing.JMenuItem();
         proveedores = new javax.swing.JMenu();
@@ -105,6 +105,14 @@ public class Compras55 extends javax.swing.JFrame {
         });
         jMenu1.add(jmComprasPorProveedor);
 
+        jmProductosBajoStock.setText("Productos con Bajo Stock");
+        jmProductosBajoStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProductosBajoStockActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmProductosBajoStock);
+
         jmProductosPorCompra.setText("Productos por Compra");
         jmProductosPorCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +121,15 @@ public class Compras55 extends javax.swing.JFrame {
         });
         jMenu1.add(jmProductosPorCompra);
 
-        jmProductosPorProveedor.setText("Producto por Proveedor");
+        jmProductosPorFechas.setText("Productos por Fechas");
+        jmProductosPorFechas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProductosPorFechasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmProductosPorFechas);
+
+        jmProductosPorProveedor.setText("Productos por Proveedor");
         jmProductosPorProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmProductosPorProveedorActionPerformed(evt);
@@ -128,22 +144,6 @@ public class Compras55 extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jmProveedorPorProducto);
-
-        jmProductosPorFechas.setText("Productos por Fechas");
-        jmProductosPorFechas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmProductosPorFechasActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jmProductosPorFechas);
-
-        jmProductosBajoStock.setText("Productos con bajo Stock");
-        jmProductosBajoStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmProductosBajoStockActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jmProductosBajoStock);
 
         compras.add(jMenu1);
 

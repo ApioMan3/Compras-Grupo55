@@ -9,16 +9,11 @@ import accesoADatos.CompraData;
 import accesoADatos.DetalleCompraData;
 import entidades.Compra;
 import entidades.DetalleCompra;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
-import javax.swing.AbstractAction;
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -39,7 +34,6 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
             armarCabecera();
             fechaActual();
             llenarTabla();
-            keyListener();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al cargar los datos, verifique los datos ingresados.");
@@ -81,19 +75,6 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Error en la fecha");
         }
 
-    }
-
-    private void keyListener() {
-        jBSalir.setFocusable(true);
-        jBSalir.requestFocusInWindow();
-        KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
-        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "accionSalir");
-        getRootPane().getActionMap().put("accionSalir", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jBSalir.doClick();
-            }
-        });
     }
 
     @SuppressWarnings("unchecked")

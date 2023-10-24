@@ -5,13 +5,8 @@
  */
 package vistas;
 
-import accesoADatos.CompraData;
 import accesoADatos.DetalleCompraData;
-import entidades.Compra;
 import entidades.DetalleCompra;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
