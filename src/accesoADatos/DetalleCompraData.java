@@ -88,32 +88,25 @@ public class DetalleCompraData {
         return detalle;
     }
 
-    public List<String> proveedoresPorProducto(int idProducto) {
-        List<String> proveedores = new ArrayList<>();
+    public List<Proveedor> proveedoresPorProducto(int idProducto) {
+        List<Proveedor> proveedores = new ArrayList<>();
         try {
             String sql = "SELECT * FROM detallecompra\n"
                     + "JOIN compra ON compra.idCompra = detalleCompra.idCompra\n"
                     + "JOIN proveedor ON compra.idProveedor = proveedor.idProveedor\n"
                     + "JOIN producto ON detalleCompra.idProducto = producto.idProducto\n"
-                    + "WHERE detalleCompra.idProducto= ?";
+                    + "WHERE detallecompra.idProducto= ?\n"
+                    + "GROUP BY proveedor.idProveedor;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idProducto);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String proveedor = rs.getString("proveedor.razonSocial");
-                boolean encontrado = false;
-
-                for (String aux : proveedores) {
-                    if (aux.equals(proveedor)) {
-                        encontrado = true;
-                        break;
-                    }
-                }
-
-                if (!encontrado) {
-                    proveedores.add(proveedor);
-                    System.out.println("Añadido: " + proveedor);
-                }
+                Proveedor proveedor = new Proveedor();
+                proveedor.setIdProveedor(rs.getInt("idProveedor"));
+                proveedor.setRazonSocial(rs.getString("razonSocial"));
+                proveedor.setDomicilio(rs.getString("domicilio"));
+                proveedor.setTelefono(rs.getString("telefono"));
+                proveedores.add(proveedor);
 
             }
             ps.close();

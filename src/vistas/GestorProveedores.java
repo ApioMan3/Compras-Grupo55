@@ -73,6 +73,7 @@ public class GestorProveedores extends javax.swing.JInternalFrame {
             }
         });
 
+        bGuardar.setBackground(new java.awt.Color(255, 255, 204));
         bGuardar.setText("Guardar");
         bGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

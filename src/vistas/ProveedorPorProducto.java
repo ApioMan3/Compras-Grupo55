@@ -138,6 +138,7 @@ public class ProveedorPorProducto extends javax.swing.JInternalFrame {
     }
 
     private void armarCabecera() {
+        modelo.addColumn("ID");
         modelo.addColumn("Proveedor");
         tCompras.setModel(modelo);
     }
@@ -151,9 +152,9 @@ public class ProveedorPorProducto extends javax.swing.JInternalFrame {
         DetalleCompraData accesoD = new DetalleCompraData();
 
         Producto producto = (Producto) cbProducto.getSelectedItem();
-        List<String> proveedores = accesoD.proveedoresPorProducto(producto.getIdProducto());
-            for (String detalle : proveedores) {
-                modelo.addRow(new Object[]{detalle});
+        List<Proveedor> proveedores = accesoD.proveedoresPorProducto(producto.getIdProducto());
+            for (Proveedor prov : proveedores) {
+                modelo.addRow(new Object[]{prov.getIdProveedor(),prov.getRazonSocial()});
             }
         
     }
