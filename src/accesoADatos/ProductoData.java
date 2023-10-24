@@ -149,6 +149,32 @@ public class ProductoData {
         return productos;
     }
 
+    public List<Producto> listarTodosLosProductosActivos() {
+
+        List<Producto> productos = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM producto WHERE estado = 1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Producto producto = new Producto();
+
+                producto.setIdProducto(rs.getInt("idProducto"));
+                producto.setNombreProducto(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecioActual(rs.getDouble("precioActual"));
+                producto.setStock(rs.getInt("stock"));
+                producto.setEstado(rs.getBoolean("estado"));
+                productos.add(producto);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Producto " + ex.getMessage());
+        }
+        return productos;
+    }
+
     public boolean verificarExistencia(Producto producto) {
         boolean existencia = false;
         List<Producto> listados = listarTodosLosProductos();
@@ -161,9 +187,9 @@ public class ProductoData {
 
         return existencia;
     }
-    
-    public void actualizarStock(int stockComprado, int idProducto){
-    
+
+    public void actualizarStock(int stockComprado, int idProducto) {
+
         String sql = "UPDATE producto SET stock = stock + ? WHERE idProducto = ?";
         PreparedStatement ps = null;
 
@@ -177,15 +203,15 @@ public class ProductoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Producto " + ex.getMessage());
         }
 
-        
     }
-    
-    public List<Producto> productosConBajoStock() {
+
+    public List<Producto> productosConBajoStock(int id) {
 
         List<Producto> productos = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM producto WHERE stock BETWEEN 0 AND 10";
+            String sql = "SELECT * FROM producto WHERE stock BETWEEN 0 AND ?";
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Producto producto = new Producto();
@@ -204,5 +230,5 @@ public class ProductoData {
         }
         return productos;
     }
-    
+
 }

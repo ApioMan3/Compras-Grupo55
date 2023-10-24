@@ -42,13 +42,19 @@ public class ProductosConBajoStock extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
 
-        int cantidad = 0;
+
         ProductoData acceso = new ProductoData();
-        List<Producto> producto = acceso.productosConBajoStock();
+        int stock =0;
+        try {
+         stock = Integer.parseInt(tfStock.getText().toString());
+        } catch (NumberFormatException e) {
+            stock= 0;
+        }
+        
+        List<Producto> producto = acceso.productosConBajoStock(stock);
 
         for (Producto aux : producto) {
             modelo.addRow(new Object[]{aux.getIdProducto(), aux.getNombreProducto(), aux.getStock()});
-            cantidad++;
         }
 
     }
@@ -60,6 +66,8 @@ public class ProductosConBajoStock extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtProductos = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        tfStock = new javax.swing.JTextField();
 
         setTitle("Productos con bajo stock");
         setToolTipText("Productos con bajo stockasdas");
@@ -86,25 +94,44 @@ public class ProductosConBajoStock extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Stock Máximo:");
+
+        tfStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfStockKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jbSalir))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbSalir)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
+                    .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbSalir)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,10 +141,16 @@ public class ProductosConBajoStock extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    private void tfStockKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfStockKeyReleased
+        llenarTabla();
+    }//GEN-LAST:event_tfStockKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbSalir;
     private javax.swing.JTable jtProductos;
+    private javax.swing.JTextField tfStock;
     // End of variables declaration//GEN-END:variables
 }

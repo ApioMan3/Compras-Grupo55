@@ -49,7 +49,7 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
 
     private void llenarComboProducto() {
         ProductoData acceso = new ProductoData();
-        List<Producto> listado = acceso.listarTodosLosProductos();
+        List<Producto> listado = acceso.listarTodosLosProductosActivos();
         for (Producto producto : listado) {
             jCBProducto.addItem(producto);
         }
