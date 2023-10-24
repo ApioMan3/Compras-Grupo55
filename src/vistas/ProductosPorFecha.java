@@ -91,6 +91,9 @@ public class ProductosPorFecha extends javax.swing.JInternalFrame {
         lResumen = new javax.swing.JLabel();
         jBSalir = new javax.swing.JButton();
 
+        setTitle("Productos por fecha");
+        setToolTipText("Gestor que permite seleccionar una fecha y devuelve detalles sobre los productos adquiridos en dicho día.");
+
         jLFecha.setText("Fecha:");
 
         jDCFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {

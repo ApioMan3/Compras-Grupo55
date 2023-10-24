@@ -48,7 +48,8 @@ public class Compras55 extends javax.swing.JFrame {
         jmComprasPorFecha = new javax.swing.JMenuItem();
         jmComprasPorProveedor = new javax.swing.JMenuItem();
         jmProductosPorCompra = new javax.swing.JMenuItem();
-        jmProveedoresPorProducto = new javax.swing.JMenuItem();
+        jmProductosPorProveedor = new javax.swing.JMenuItem();
+        jmProveedorPorProducto = new javax.swing.JMenuItem();
         jmProductosPorFechas = new javax.swing.JMenuItem();
         jmProductosBajoStock = new javax.swing.JMenuItem();
         productos = new javax.swing.JMenu();
@@ -112,13 +113,21 @@ public class Compras55 extends javax.swing.JFrame {
         });
         jMenu1.add(jmProductosPorCompra);
 
-        jmProveedoresPorProducto.setText("Proveedores por Producto");
-        jmProveedoresPorProducto.addActionListener(new java.awt.event.ActionListener() {
+        jmProductosPorProveedor.setText("Producto por Proveedor");
+        jmProductosPorProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmProveedoresPorProductoActionPerformed(evt);
+                jmProductosPorProveedorActionPerformed(evt);
             }
         });
-        jMenu1.add(jmProveedoresPorProducto);
+        jMenu1.add(jmProductosPorProveedor);
+
+        jmProveedorPorProducto.setText("Proveedor por Producto");
+        jmProveedorPorProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmProveedorPorProductoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmProveedorPorProducto);
 
         jmProductosPorFechas.setText("Productos por Fechas");
         jmProductosPorFechas.addActionListener(new java.awt.event.ActionListener() {
@@ -250,14 +259,14 @@ public class Compras55 extends javax.swing.JFrame {
         dpEscritorio.moveToFront(ch);
     }//GEN-LAST:event_jmProductosPorCompraActionPerformed
 
-    private void jmProveedoresPorProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProveedoresPorProductoActionPerformed
+    private void jmProductosPorProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosPorProveedorActionPerformed
         dpEscritorio.removeAll();
         dpEscritorio.repaint();
-        ProveedorPorProducto pp = new ProveedorPorProducto();
+        ProductoPorProveedor pp = new ProductoPorProveedor();
         pp.setVisible(true);
         dpEscritorio.add(pp);
         dpEscritorio.moveToFront(pp);
-    }//GEN-LAST:event_jmProveedoresPorProductoActionPerformed
+    }//GEN-LAST:event_jmProductosPorProveedorActionPerformed
 
     private void jmProductosPorFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProductosPorFechasActionPerformed
         dpEscritorio.removeAll();
@@ -276,6 +285,15 @@ public class Compras55 extends javax.swing.JFrame {
         dpEscritorio.add(ps);
         dpEscritorio.moveToFront(ps);
     }//GEN-LAST:event_jmProductosBajoStockActionPerformed
+
+    private void jmProveedorPorProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmProveedorPorProductoActionPerformed
+        dpEscritorio.removeAll();
+        dpEscritorio.repaint();
+        ProveedorPorProducto pp = new ProveedorPorProducto();
+        pp.setVisible(true);
+        dpEscritorio.add(pp);
+        dpEscritorio.moveToFront(pp);
+    }//GEN-LAST:event_jmProveedorPorProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,8 +341,9 @@ public class Compras55 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmProductosBajoStock;
     private javax.swing.JMenuItem jmProductosPorCompra;
     private javax.swing.JMenuItem jmProductosPorFechas;
+    private javax.swing.JMenuItem jmProductosPorProveedor;
+    private javax.swing.JMenuItem jmProveedorPorProducto;
     private javax.swing.JMenuItem jmProveedores;
-    private javax.swing.JMenuItem jmProveedoresPorProducto;
     private javax.swing.JMenuItem jmRegistrar;
     private javax.swing.JMenu productos;
     private javax.swing.JMenu proveedores;

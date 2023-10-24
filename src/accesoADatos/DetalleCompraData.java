@@ -46,7 +46,7 @@ public class DetalleCompraData {
             if (rs.next()) {
                 cantidadDetalles++;
             }
-            
+
             JOptionPane.showMessageDialog(null, cantidadDetalles + " detalle/s añadido/s con exito.");
             ps.close();
 
@@ -54,7 +54,7 @@ public class DetalleCompraData {
             JOptionPane.showMessageDialog(null, "Error de acceso: " + ex.getMessage());
         }
     }
-    
+
     public List<DetalleCompra> obtenerProductosIdCompra(int idCompra) {
         List<DetalleCompra> detalle = new ArrayList<>();
         try {
@@ -86,5 +86,41 @@ public class DetalleCompraData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla." + ex.getMessage());
         }
         return detalle;
+    }
+
+    public List<String> proveedoresPorProducto(int idProducto) {
+        List<String> proveedores = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM detallecompra\n"
+                    + "JOIN compra ON compra.idCompra = detalleCompra.idCompra\n"
+                    + "JOIN proveedor ON compra.idProveedor = proveedor.idProveedor\n"
+                    + "JOIN producto ON detalleCompra.idProducto = producto.idProducto\n"
+                    + "WHERE detalleCompra.idProducto= ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idProducto);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String proveedor = rs.getString("proveedor.razonSocial");
+                boolean encontrado = false;
+
+                for (String aux : proveedores) {
+                    if (aux.equals(proveedor)) {
+                        encontrado = true;
+                        break;
+                    }
+                }
+
+                if (!encontrado) {
+                    proveedores.add(proveedor);
+                    System.out.println("Añadido: " + proveedor);
+                }
+
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla." + ex.getMessage());
+        }
+        return proveedores;
     }
 }

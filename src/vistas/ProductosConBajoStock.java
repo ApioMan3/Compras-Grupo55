@@ -70,7 +70,7 @@ public class ProductosConBajoStock extends javax.swing.JInternalFrame {
         tfStock = new javax.swing.JTextField();
 
         setTitle("Productos con bajo stock");
-        setToolTipText("Productos con bajo stockasdas");
+        setToolTipText("Buscador que permite filtrar productos según su stock.");
         setPreferredSize(new java.awt.Dimension(500, 500));
 
         jtProductos.setModel(new javax.swing.table.DefaultTableModel(

@@ -85,6 +85,9 @@ public class ProductosPorCompra extends javax.swing.JInternalFrame {
         lResumen = new javax.swing.JLabel();
         lResumen2 = new javax.swing.JLabel();
 
+        setTitle("Productos por compra");
+        setToolTipText("Gestor que permite buscar una compra y devuelve los productos que fueron adquiridos en la misma.");
+
         lidCompra.setText("Id. Compra:");
 
         jBBuscar.setText("Buscar");

@@ -55,6 +55,9 @@ public class GestorProductos extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JSeparator();
         lEstado = new javax.swing.JLabel();
 
+        setTitle("Gestor de Productos");
+        setToolTipText("Gestor que permite buscar un producto en la base de datos, actualizarlo o crear uno nuevo.");
+
         jLabel1.setText("Id:");
 
         jBBuscar.setBackground(new java.awt.Color(255, 255, 204));

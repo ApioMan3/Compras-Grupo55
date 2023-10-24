@@ -97,6 +97,9 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
         jBEliminar = new javax.swing.JButton();
         jbRegistrar = new javax.swing.JButton();
 
+        setTitle("Registrar compra");
+        setToolTipText("Permite gestionar una compra, seleccionando fecha, proveedor y detalles de producto.");
+
         jLabel1.setText("Proveedor:");
 
         jBSalir.setBackground(new java.awt.Color(255, 255, 204));

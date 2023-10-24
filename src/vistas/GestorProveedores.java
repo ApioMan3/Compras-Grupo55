@@ -46,6 +46,9 @@ public class GestorProveedores extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
 
+        setTitle("Gestor de Proveedores");
+        setToolTipText("Gestor que permite buscar un proveedor en la base de datos, actualizarlo o crear uno nuevo.");
+
         jLabel1.setText("ID:");
 
         jLabel2.setText("Razón Social:");

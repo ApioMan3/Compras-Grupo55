@@ -49,6 +49,9 @@ public class ComprasPorProveedor extends javax.swing.JInternalFrame {
         tCompras = new javax.swing.JTable();
         lResumen = new javax.swing.JLabel();
 
+        setTitle("Compras por Proveedor");
+        setToolTipText("Compras que han sido realizadas al proveedor seleccionado.");
+
         cbProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbProveedorActionPerformed(evt);

@@ -107,6 +107,8 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTComrpasPorFecha = new javax.swing.JTable();
 
+        setTitle("Compras por fecha");
+        setToolTipText("Compras que se han realizado durante la fecha indicada.");
         try {
             setSelected(true);
         } catch (java.beans.PropertyVetoException e1) {

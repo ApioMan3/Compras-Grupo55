@@ -2,6 +2,7 @@
 package accesoADatos;
 
 import entidades.Compra;
+import entidades.Producto;
 import entidades.Proveedor;
 import java.sql.Connection;
 import java.sql.Date;
@@ -107,6 +108,7 @@ public class CompraData {
         }
         return compras;
     }
+    
     
     public int guardarCompra(Compra compra) {
 
