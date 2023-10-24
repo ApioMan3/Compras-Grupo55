@@ -7,19 +7,18 @@ package vistas;
 
 import accesoADatos.CompraData;
 import accesoADatos.DetalleCompraData;
-import accesoADatos.ProveedorData;
 import entidades.Compra;
 import entidades.DetalleCompra;
-import entidades.Proveedor;
-import java.awt.event.KeyAdapter;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JButton;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,9 +37,9 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
         try {
             initComponents();
             armarCabecera();
-            atajos();
             fechaActual();
             llenarTabla();
+            keyListener();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al cargar los datos, verifique los datos ingresados.");
@@ -78,10 +77,23 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
                 cantidad++;
             }
             lResumen.setText("Cantidad de compras realizadas en la fecha: " + fecha.toString() + " : " + cantidad);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en la fecha");
         }
-        catch(Exception e){
-        JOptionPane.showMessageDialog(this,"Error en la fecha");}
-        
+
+    }
+
+    private void keyListener() {
+        jBSalir.setFocusable(true);
+        jBSalir.requestFocusInWindow();
+        KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeKeyStroke, "accionSalir");
+        getRootPane().getActionMap().put("accionSalir", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jBSalir.doClick();
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -109,6 +121,7 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
 
         jLFecha.setText("Fecha:");
 
+        jBSalir.setBackground(new java.awt.Color(255, 255, 204));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,17 +201,6 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
         llenarTabla();
     }//GEN-LAST:event_jDCFechaPropertyChange
 
-    private void atajos() {
-        jBSalir.setFocusable(true);
-        jBSalir.requestFocusInWindow();
-        jBSalir.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    dispose();
-                }
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSalir;
     private com.toedter.calendar.JDateChooser jDCFecha;

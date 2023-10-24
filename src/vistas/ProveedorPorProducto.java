@@ -58,6 +58,7 @@ public class ProveedorPorProducto extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Proveedor");
 
+        jbSalir.setBackground(new java.awt.Color(255, 255, 204));
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

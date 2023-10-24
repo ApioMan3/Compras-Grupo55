@@ -78,6 +78,7 @@ public class ProductosConBajoStock extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtProductos);
 
+        jbSalir.setBackground(new java.awt.Color(255, 255, 204));
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

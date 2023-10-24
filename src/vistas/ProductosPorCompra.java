@@ -115,6 +115,7 @@ public class ProductosPorCompra extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTCompras);
 
+        jBSalir.setBackground(new java.awt.Color(255, 255, 204));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
