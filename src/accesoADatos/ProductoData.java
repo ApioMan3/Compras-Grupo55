@@ -92,7 +92,7 @@ public class ProductoData {
                 producto.setEstado(rs.getBoolean("estado"));
 
             } else {
-                JOptionPane.showMessageDialog(null, "No existe el producto con dicho ID.");
+                JOptionPane.showMessageDialog(null, "No existe el producto con el ID: " + id + ".");
             }
             ps.close();
         } catch (SQLException ex) {

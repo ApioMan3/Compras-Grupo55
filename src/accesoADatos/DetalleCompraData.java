@@ -33,7 +33,6 @@ public class DetalleCompraData {
 
     public void guardarDetalleCompra(DetalleCompra detalle, int idCompra) {
         String sql = "INSERT INTO detallecompra(`cantidad`,`precioCosto`,`idCompra`,`idProducto`) VALUES (?,?,?,?)";
-        int cantidadDetalles = 0;
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, detalle.getCantidad());
@@ -43,11 +42,6 @@ public class DetalleCompraData {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
-            if (rs.next()) {
-                cantidadDetalles++;
-            }
-
-            JOptionPane.showMessageDialog(null, cantidadDetalles + " detalle/s añadido/s con exito.");
             ps.close();
 
         } catch (SQLException ex) {

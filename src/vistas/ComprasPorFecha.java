@@ -116,17 +116,17 @@ public class ComprasPorFecha extends javax.swing.JInternalFrame {
 
         jTComrpasPorFecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "idCompra", "Proveedor", "Producto"
+                "idCompra", "Proveedor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
