@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2023 a las 01:19:33
+-- Tiempo de generación: 28-10-2023 a las 01:26:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `compras`
+-- Base de datos: `compras-grupo55`
 --
-CREATE DATABASE IF NOT EXISTS `compras` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `compras`;
+CREATE DATABASE IF NOT EXISTS `compras-grupo55` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `compras-grupo55`;
 
 -- --------------------------------------------------------
 
